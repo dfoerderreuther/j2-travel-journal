@@ -1,56 +1,85 @@
-.hotel-list {
+.hotels-section {
+  background: #f0f4ff;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.hotels-section .hotels-heading {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+}
+
+.hotels-section .hotel-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1.5rem;
-  padding: 2rem 0;
 }
 
-.hotel-card {
-  border: 1px solid var(--color-gray-200, #e5e7eb);
-  border-radius: 8px;
+.hotels-section .hotel-card {
+  background: #fff;
+  border-radius: 12px;
+  border-top: 3px solid #035fe6;
   overflow: hidden;
-  background: var(--background-color, #fff);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
 }
 
-.hotel-card img {
+.hotels-section .hotel-card:hover {
+  box-shadow: 0 4px 16px rgb(0 0 0 / 13%);
+}
+
+.hotels-section .hotel-card > img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 220px;
   object-fit: cover;
+  display: block;
 }
 
-.hotel-card-body {
-  padding: 1rem;
+.hotels-section .hotel-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.hotel-card-body h2 {
-  font-size: 1.1rem;
+.hotels-section .hotel-card-body h2 {
+  font-size: 1.2rem;
   margin: 0 0 0.25rem;
 }
 
-.hotel-location {
-  color: var(--color-gray-500, #6b7280);
+.hotels-section .hotel-location {
   font-size: 0.875rem;
-  margin: 0 0 0.5rem;
-}
-
-.hotel-description {
-  font-size: 0.9rem;
+  color: #777;
   margin: 0 0 0.75rem;
 }
 
-.hotel-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.875rem;
+.hotels-section .hotel-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 1rem;
+  flex: 1;
 }
 
-.hotel-rating {
-  color: #f59e0b;
+.hotels-section .hotel-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.hotels-section .hotel-rating {
+  color: #e8a020;
+  font-size: 1rem;
   letter-spacing: 0.05em;
 }
 
-.hotel-price {
+.hotels-section .hotel-price {
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--link-color, #035fe6);
+  color: #1a1a1a;
+  margin-left: auto;
 }
