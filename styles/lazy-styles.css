@@ -1,15 +1,41 @@
 /* add global styles that can be loaded post LCP here */
 
-/* Hotel recommendations section — CSS trick, no JS required */
-.section:has(#recommended-hotels) {
+/* Hotel recommendations section — CSS only, no JS */
+.section:has(#recommended-hotels) .default-content-wrapper {
   background: #f0f4ff;
   border-radius: 16px;
   padding: 2rem;
-  margin-top: 2rem;
+  overflow: hidden; /* clearfix for floats */
 }
 
+/* Each hotel image floats left — clear:left starts a new hotel row */
+.section:has(#recommended-hotels) p:has(picture) {
+  float: left;
+  clear: left;
+  width: 42%;
+  margin: 0 1.5rem 2rem 0;
+}
+
+.section:has(#recommended-hotels) p:has(picture) img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Hotel name — sits to the right of the floated image */
 .section:has(#recommended-hotels) h2:not(#recommended-hotels) {
-  border-top: 3px solid #035fe6;
-  padding-top: 1rem;
-  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 0;
+  color: #1a1a1a;
+}
+
+/* Location, description, price — stay right of float */
+.section:has(#recommended-hotels) .default-content-wrapper > p:not(:has(picture)) {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+  color: #555;
 }
