@@ -1,41 +1,89 @@
 /* add global styles that can be loaded post LCP here */
 
-/* Hotel recommendations section — CSS only, no JS */
+/* Hotel recommendations — CSS grid, no JS
+   Markup per hotel: p:has(picture) | h2 | p(location) | p(desc) | p(price)
+   Image → col 1, span 4 rows. Text items → col 2, auto-placed rows. */
+
 .section:has(#recommended-hotels) .default-content-wrapper {
-  background: #f0f4ff;
-  border-radius: 16px;
-  padding: 2rem;
-  overflow: hidden; /* clearfix for floats */
+  display: grid;
+  grid-template-columns: 42% 1fr;
+  column-gap: 2.5rem;
+  row-gap: 0;
+  background: #f7f5f0;
+  border-radius: 20px;
+  padding: 2.5rem;
 }
 
-/* Each hotel image floats left — clear:left starts a new hotel row */
-.section:has(#recommended-hotels) p:has(picture) {
-  float: left;
-  clear: left;
-  width: 42%;
-  margin: 0 1.5rem 2rem 0;
+/* Everything defaults to col 2 */
+.section:has(#recommended-hotels) .default-content-wrapper > * {
+  grid-column: 2;
 }
 
-.section:has(#recommended-hotels) p:has(picture) img {
+/* Section heading spans full width */
+.section:has(#recommended-hotels) .default-content-wrapper > h2:first-child {
+  grid-column: 1 / -1;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0ddd8;
+}
+
+/* Images → col 1, span 4 rows (h2 + 3 × p) */
+.section:has(#recommended-hotels) .default-content-wrapper > p:has(picture) {
+  grid-column: 1;
+  grid-row: span 4;
+  align-self: start;
+  margin: 0;
+}
+
+.section:has(#recommended-hotels) .default-content-wrapper > p:has(picture) img {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 14px;
   display: block;
 }
 
-/* Hotel name — sits to the right of the floated image */
-.section:has(#recommended-hotels) h2:not(#recommended-hotels) {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-top: 0;
-  color: #1a1a1a;
+/* Gap before each hotel except first */
+.section:has(#recommended-hotels) .default-content-wrapper > p:has(picture) ~ p:has(picture) {
+  margin-top: 2.5rem;
 }
 
-/* Location, description, price — stay right of float */
-.section:has(#recommended-hotels) .default-content-wrapper > p:not(:has(picture)) {
+/* Hotel name */
+.section:has(#recommended-hotels) .default-content-wrapper > h2:not(:first-child) {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+  color: #1a1a1a;
+  align-self: end;
+}
+
+/* Location — first p after hotel h2: small gray italic */
+.section:has(#recommended-hotels) .default-content-wrapper > h2:not(:first-child) + p {
+  font-size: 0.8rem;
+  color: #999;
+  font-style: italic;
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Description */
+.section:has(#recommended-hotels) .default-content-wrapper > h2:not(:first-child) + p + p {
   font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0 0 0.5rem;
+  line-height: 1.7;
   color: #555;
+  margin: 0 0 1rem;
+}
+
+/* Price + rating */
+.section:has(#recommended-hotels) .default-content-wrapper > h2:not(:first-child) + p + p + p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+  padding-bottom: 0.25rem;
 }
